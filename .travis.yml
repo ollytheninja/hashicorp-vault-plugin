@@ -1,1 +1,4 @@
 language: java
+
+before_script: sudo apt-get install build-essential automake1.10 libtool
+script: "mvn install -P linux64"
