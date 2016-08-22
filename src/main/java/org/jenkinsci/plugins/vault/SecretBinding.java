@@ -63,7 +63,17 @@ public class SecretBinding extends Binding<SecretCredentials> {
         catch(VaultException e) {
           throw new IOException(e.getMessage());
         }
-        return new SingleEnvironment(secretValue);
+
+        SingleEnvironment env;
+        try {
+          env = new SingleEnvironment(secretValue);
+        }
+        catch(NullPointerException e){
+          NullPointerException f = new NullPointerException( "Got NullPointer from Vault, have you set the secret in Vault? \n"+e.getMessage());
+          f.setStackTrace(e.getStackTrace());
+          throw f;
+        }
+        return env
     }
 
     @Extension
