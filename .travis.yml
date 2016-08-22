@@ -1,4 +1,4 @@
 language: java
 
-before_script: sudo apt-get install build-essential automake1.10 libtool
+before_script: sudo apt-get install build-essential automake1.10 libtool jenkins
 script: "mvn install -P linux64"
